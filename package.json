@@ -1,6 +1,6 @@
 {
   "name": "handlebars-delimiters",
-  "description": "Set custom delimiters with Handlebars templates.",
+  "description": "Custom delimiters, for Handlebars templates.",
   "version": "0.1.0",
   "homepage": "https://github.com/jonschlinkert/handlebars-delimiters",
   "author": {
@@ -33,16 +33,25 @@
     "mocha": "*"
   },
   "keywords": [
-    "docs",
-    "documentation",
-    "generate",
-    "generator",
-    "markdown",
-    "templates",
-    "verb"
+    "change",
+    "compile",
+    "delimiter",
+    "delimiters",
+    "delims",
+    "expression",
+    "handlebars",
+    "hbs",
+    "re",
+    "regex",
+    "regexp",
+    "regular",
+    "render",
+    "switch",
+    "syntax",
+    "template",
+    "templates"
   ],
   "dependencies": {
-    "delims": "^0.3.0",
     "handlebars": "^2.0.0"
   }
 }

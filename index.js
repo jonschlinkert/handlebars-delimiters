@@ -7,31 +7,21 @@
 
 'use strict';
 
-var Handlebars = require('handlebars');
-var Delimiters = require('delims');
-var delimiters = new Delimiters();
 
-
-function escapeDelims(str, delims) {
-  var defaults = /\{{([\s\S]+?)}}/ig;
-  var match;
-
-  while (match = defaults.exec(str)) {
-    str = str.replace(match[0], '\\{{' + match[1] + '}}');
+module.exports = function (Handlebars, delims) {
+  if (delims[0].indexOf('=') === -1) {
+    delims[0] = delims[0] + '[^=]';
   }
-  return str;
-}
 
+  var re = new RegExp(delims[0] + '([\\s\\S]+?)' + delims[1], 'g');
 
-function useDelims(Handlebars, delims) {
-  var re = delimiters.templates(delims).interpolate;
+  // Idea for compile method from http://stackoverflow.com/a/19181804/1267639
   if (!Handlebars._compile) {
     Handlebars._compile = Handlebars.compile;
   }
 
   Handlebars.compile = function () {
     var args = [].slice.call(arguments);
-    var match;
 
     if (typeof args[0] !== 'string') {
       throw new Error('The first argument must be a string.');
@@ -41,16 +31,20 @@ function useDelims(Handlebars, delims) {
       args[0] = escapeDelims(args[0], delims);
     }
 
+    var match;
     while (match = re.exec(args[0])) {
-      args[0] = args[0].replace(match[0], '{{' + match[1] + '}}');
+      args[0] = args[0].replace(re, '{{' + match[1] + '}}');
     }
-
     return Handlebars._compile.apply(null, args);
   };
 };
 
-useDelims(Handlebars, ['<%', '%>']);
-console.log(Handlebars.compile('{{ name }}{{{ name }}}<%= name %><< name >>')({name: 'Jon Schlinkert'}));
+var escapeDelims = module.exports.escapeDelims = function (str, delims) {
+  var defaults = /\{{([\s\S]+?)}}/ig;
+  var match;
 
-useDelims(Handlebars, ['<<', '>>']);
-console.log(Handlebars.compile('{{ name }}<%= name %><<= name >>')({name: 'Jon Schlinkert'}));
+  while (match = defaults.exec(str)) {
+    str = str.replace(match[0], '\\{{' + match[1] + '}}');
+  }
+  return str;
+};

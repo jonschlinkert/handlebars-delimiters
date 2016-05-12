@@ -10,7 +10,7 @@
 
 module.exports = function (Handlebars, delims) {
   if (delims[0].indexOf('=') === -1) {
-    delims[0] = delims[0] + '[^=]';
+    delims[0] = delims[0] + '(?!=)';
   }
 
   var re = new RegExp(delims[0] + '([\\s\\S]+?)' + delims[1], 'g');

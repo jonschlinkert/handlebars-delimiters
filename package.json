@@ -3,29 +3,24 @@
   "description": "Custom delimiters, for Handlebars templates.",
   "version": "0.1.0",
   "homepage": "https://github.com/jonschlinkert/handlebars-delimiters",
-  "author": {
-    "name": "Jon Schlinkert",
-    "url": "https://github.com/jonschlinkert"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/jonschlinkert/handlebars-delimiters.git"
-  },
+  "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "repository": "jonschlinkert/handlebars-delimiters",
   "bugs": {
     "url": "https://github.com/jonschlinkert/handlebars-delimiters/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/jonschlinkert/handlebars-delimiters/blob/master/LICENSE-MIT"
-    }
+  "license": "MIT",
+  "files": [
+    "index.js"
   ],
   "main": "index.js",
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "mocha -R spec"
+    "test": "mocha"
+  },
+  "dependencies": {
+    "handlebars": "^2.0.0"
   },
   "devDependencies": {
     "verb-tag-jscomments": ">= 0.2.0",
@@ -50,8 +45,5 @@
     "syntax",
     "template",
     "templates"
-  ],
-  "dependencies": {
-    "handlebars": "^2.0.0"
-  }
+  ]
 }

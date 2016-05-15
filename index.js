@@ -7,8 +7,7 @@
 
 'use strict';
 
-
-module.exports = function (Handlebars, delims) {
+module.exports = function(Handlebars, delims) {
   if (delims[0].indexOf('=') === -1) {
     delims[0] = delims[0] + '(?!=)';
   }
@@ -20,7 +19,7 @@ module.exports = function (Handlebars, delims) {
     Handlebars._compile = Handlebars.compile;
   }
 
-  Handlebars.compile = function () {
+  Handlebars.compile = function() {
     var args = [].slice.call(arguments);
 
     if (typeof args[0] !== 'string') {
@@ -39,7 +38,7 @@ module.exports = function (Handlebars, delims) {
   };
 };
 
-var escapeDelims = module.exports.escapeDelims = function (str, delims) {
+var escapeDelims = module.exports.escapeDelims = function(str, delims) {
   var defaults = /\{{([\s\S]+?)}}/ig;
   var match;
 

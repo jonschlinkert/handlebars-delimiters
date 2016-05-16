@@ -1,7 +1,7 @@
 {
   "name": "handlebars-delimiters",
   "description": "Custom delimiters, for Handlebars templates.",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "homepage": "https://github.com/jonschlinkert/handlebars-delimiters",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/handlebars-delimiters",

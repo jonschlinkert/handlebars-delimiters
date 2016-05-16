@@ -1,7 +1,7 @@
 {
   "name": "handlebars-delimiters",
   "description": "Custom delimiters, for Handlebars templates.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "homepage": "https://github.com/jonschlinkert/handlebars-delimiters",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
   "repository": "jonschlinkert/handlebars-delimiters",
@@ -19,13 +19,9 @@
   "scripts": {
     "test": "mocha"
   },
-  "dependencies": {
-    "handlebars": "^2.0.0"
-  },
   "devDependencies": {
-    "verb-tag-jscomments": ">= 0.2.0",
-    "verb": ">= 0.2.6",
-    "mocha": "*"
+    "gulp-format-md": "^0.1.9",
+    "handlebars": "^4.0.5"
   },
   "keywords": [
     "change",
@@ -45,5 +41,28 @@
     "syntax",
     "template",
     "templates"
-  ]
+  ],
+  "verb": {
+    "toc": false,
+    "layout": "default",
+    "tasks": [
+      "readme"
+    ],
+    "plugins": [
+      "gulp-format-md"
+    ],
+    "related": {
+      "list": [
+        "handlebars-lint",
+        "handlebars-helpers",
+        "template-helpers"
+      ]
+    },
+    "reflinks": [
+      "verb"
+    ],
+    "lint": {
+      "reflinks": true
+    }
+  }
 }

@@ -12,7 +12,7 @@ module.exports = function(Handlebars, delims) {
     delims[0] = delims[0] + '(?!=)';
   }
 
-  var re = new RegExp(delims[0] + '([\\s\\S]+?)' + delims[1], 'g');
+  var re = new RegExp(delims[0] + '([\\s\\S]+?)' + delims[1]);
 
   // Idea for compile method from http://stackoverflow.com/a/19181804/1267639
   if (!Handlebars._compile) {

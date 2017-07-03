@@ -39,7 +39,7 @@ module.exports = function(Handlebars, delims) {
 };
 
 var escapeDelims = module.exports.escapeDelims = function(str, delims) {
-  var defaults = /\{{([\s\S]+?)}}/;
+  var defaults = /\{{([\s\S]+?)}}/g;
   var match;
 
   while ((match = defaults.exec(str))) {

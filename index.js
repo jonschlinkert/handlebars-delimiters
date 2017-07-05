@@ -12,7 +12,7 @@ module.exports = function(Handlebars, delims) {
     delims[0] = delims[0] + '(?!=)';
   }
 
-  var re = new RegExp(delims[0] + '([\\s\\S]+?)' + delims[1], 'g');
+  var re = new RegExp(delims[0] + '([\\s\\S]+?)' + delims[1]);
 
   // Idea for compile method from http://stackoverflow.com/a/19181804/1267639
   if (!Handlebars._compile) {
@@ -31,7 +31,7 @@ module.exports = function(Handlebars, delims) {
     }
 
     var match;
-    while (match = re.exec(args[0])) {
+    while ((match = re.exec(args[0]))) {
       args[0] = args[0].replace(re, '{{' + match[1] + '}}');
     }
     return Handlebars._compile.apply(null, args);
@@ -39,10 +39,10 @@ module.exports = function(Handlebars, delims) {
 };
 
 var escapeDelims = module.exports.escapeDelims = function(str, delims) {
-  var defaults = /\{{([\s\S]+?)}}/ig;
+  var defaults = /\{{([\s\S]+?)}}/g;
   var match;
 
-  while (match = defaults.exec(str)) {
+  while ((match = defaults.exec(str))) {
     str = str.replace(match[0], '\\{{' + match[1] + '}}');
   }
   return str;

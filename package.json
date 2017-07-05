@@ -4,6 +4,11 @@
   "version": "0.1.2",
   "homepage": "https://github.com/jonschlinkert/handlebars-delimiters",
   "author": "Jon Schlinkert (https://github.com/jonschlinkert)",
+  "contributors": [
+    "Adam McCormick (https://github.com/AdamMcCormick)",
+    "Changyu Geng (https://github.com/KingMario)",
+    "Jon Schlinkert (http://twitter.com/jonschlinkert)"
+  ],
   "repository": "jonschlinkert/handlebars-delimiters",
   "bugs": {
     "url": "https://github.com/jonschlinkert/handlebars-delimiters/issues"
@@ -21,7 +26,8 @@
   },
   "devDependencies": {
     "gulp-format-md": "^0.1.9",
-    "handlebars": "^4.0.5"
+    "handlebars": "^4.0.5",
+    "mocha": "^3.4.2"
   },
   "keywords": [
     "change",
@@ -53,8 +59,8 @@
     ],
     "related": {
       "list": [
-        "handlebars-lint",
         "handlebars-helpers",
+        "handlebars-lint",
         "template-helpers"
       ]
     },

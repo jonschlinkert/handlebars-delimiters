@@ -1,78 +1,146 @@
-# handlebars-delimiters [![NPM version](https://img.shields.io/npm/v/handlebars-delimiters.svg?style=flat)](https://www.npmjs.com/package/handlebars-delimiters) [![NPM downloads](https://img.shields.io/npm/dm/handlebars-delimiters.svg?style=flat)](https://npmjs.org/package/handlebars-delimiters) [![Build Status](https://img.shields.io/travis/jonschlinkert/handlebars-delimiters.svg?style=flat)](https://travis-ci.org/jonschlinkert/handlebars-delimiters)
+# handlebars-delimiters [![NPM version](https://img.shields.io/npm/v/handlebars-delimiters.svg?style=flat)](https://www.npmjs.com/package/handlebars-delimiters) [![NPM monthly downloads](https://img.shields.io/npm/dm/handlebars-delimiters.svg?style=flat)](https://npmjs.org/package/handlebars-delimiters) [![NPM total downloads](https://img.shields.io/npm/dt/handlebars-delimiters.svg?style=flat)](https://npmjs.org/package/handlebars-delimiters) [![Linux Build Status](https://img.shields.io/travis/jonschlinkert/handlebars-delimiters.svg?style=flat&label=Travis)](https://travis-ci.org/jonschlinkert/handlebars-delimiters)
 
-Custom delimiters, for Handlebars templates.
+> Custom delimiters, for Handlebars templates.
 
 ## Install
 
 Install with [npm](https://www.npmjs.com/):
 
 ```sh
-$ npm install handlebars-delimiters --save
+$ npm install --save handlebars-delimiters
 ```
+
+## Release history
+
+### v1.0.0
+
+* **breaking changes**: the `.escapeDelims` method was renamed to `.escape`
+* adds a `.replace` method that replaces delimiters and returns a string
 
 ## Usage
 
 ```js
+var delimiters = require('handlebars-delimiters');
 var Handlebars = require('handlebars');
-var useDelims = require('handlebars-delimiters');
+
+/**
+ * Before
+ */
 
 var a = Handlebars.compile('{{ name }}<%= name %>')({name: 'Jon'});
 console.log(a);
 //=> 'Jon<%= name %>'
 
+/**
+ * After
+ */
+
 // Pass your instance of Handlebars and define custom delimiters
-useDelims(Handlebars, ['<%=', '%>']);
+delimiters(Handlebars, ['<%=', '%>']);
 var b = Handlebars.compile('{{ name }}<%= name %>')({name: 'Jon'});
 console.log(b);
 //=> '{{ name }}Jon'
 ```
 
-## Related projects
+## API
 
-You might also be interested in these projects:
+**Params**
 
-* [handlebars-helpers](https://www.npmjs.com/package/handlebars-helpers): 120+ Handlebars helpers in ~20 categories, for Assemble, YUI, Ghost or any Handlebars project. Includes… [more](https://www.npmjs.com/package/handlebars-helpers) | [homepage](https://github.com/assemble/handlebars-helpers)
-* [handlebars-lint](https://www.npmjs.com/package/handlebars-lint): Pass a context and a string with handlebars templates and lint for missing variables, helpers,… [more](https://www.npmjs.com/package/handlebars-lint) | [homepage](https://github.com/jonschlinkert/handlebars-lint)
-* [template-helpers](https://www.npmjs.com/package/template-helpers): Generic JavaScript helpers that can be used with any template engine. Handlebars, Lo-Dash, Underscore, or… [more](https://www.npmjs.com/package/template-helpers) | [homepage](https://github.com/jonschlinkert/template-helpers)
+* `Handlebars` **{Object}**
+* `delimiters` **{Array}**: Array with open and close delimiters, like `['<%', '%>']`
+* `returns` **{undefined}**
 
-## Contributing
+**Example**
 
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/jonschlinkert/handlebars-delimiters/issues/new).
-
-## Building docs
-
-Generate readme and API documentation with [verb](https://github.com/verbose/verb):
-
-```sh
-$ npm install verb && npm run docs
+```js
+var delimiters = require('handlebars-delimiters');
+var handlebars = require('handlebars');
+delimiters(handlebars, ['<%', '%>']);
+// you can now use handlebars as usual, but with the new delimiters
 ```
 
-Or, if [verb](https://github.com/verbose/verb) is installed globally:
+### [.replace](index.js#L71)
 
-```sh
-$ verb
+Replace or delimiters in the given string.
+
+**Params**
+
+* `str` **{String}**: String with handlebars to replace or escape.
+* `source` **{String}**: The delimiters regex source string to conver to a regular expression.
+* `escape` **{Boolean}**: If true, replacements are escaped with a double-slash.
+* `returns` **{String}**
+
+**Example**
+
+```js
+var replaced = delimiters.replace(str, ['<%=', '%>']);
 ```
 
-## Running tests
+### [.escape](index.js#L96)
 
-Install dev dependencies:
+Escape handlebars delimiters in the given string.
 
-```sh
-$ npm install -d && npm test
+**Params**
+
+* `str` **{String}**: String with handlebars to replace or escape.
+* `returns` **{String}**
+
+**Example**
+
+```js
+var escaped = delimiters.escape(str);
 ```
 
-## Author
+## About
+
+### Related projects
+
+* [handlebars-helpers](https://www.npmjs.com/package/handlebars-helpers): More than 130 Handlebars helpers in ~20 categories. Helpers can be used with Assemble, Generate… [more](https://github.com/helpers/handlebars-helpers) | [homepage](https://github.com/helpers/handlebars-helpers "More than 130 Handlebars helpers in ~20 categories. Helpers can be used with Assemble, Generate, Verb, Ghost, gulp-handlebars, grunt-handlebars, consolidate, or any node.js/Handlebars project.")
+* [handlebars-lint](https://www.npmjs.com/package/handlebars-lint): Pass a context and a string with handlebars templates and lint for missing variables, helpers… [more](https://github.com/jonschlinkert/handlebars-lint) | [homepage](https://github.com/jonschlinkert/handlebars-lint "Pass a context and a string with handlebars templates and lint for missing variables, helpers, block helpers or partials.")
+* [template-helpers](https://www.npmjs.com/package/template-helpers): Generic JavaScript helpers that can be used with any template engine. Handlebars, Lo-Dash, Underscore, or… [more](https://github.com/jonschlinkert/template-helpers) | [homepage](https://github.com/jonschlinkert/template-helpers "Generic JavaScript helpers that can be used with any template engine. Handlebars, Lo-Dash, Underscore, or any engine that supports helper functions.")
+
+### Contributing
+
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](../../issues/new).
+
+### Contributors
+
+| **Commits** | **Contributor** | 
+| --- | --- |
+| 6 | [jonschlinkert](https://github.com/jonschlinkert) |
+| 4 | [KingMario](https://github.com/KingMario) |
+| 2 | [AdamMcCormick](https://github.com/AdamMcCormick) |
+
+### Building docs
+
+_(This project's readme.md is generated by [verb](https://github.com/verbose/verb-generate-readme), please don't edit the readme directly. Any changes to the readme must be made in the [.verb.md](.verb.md) readme template.)_
+
+To generate the readme, run the following command:
+
+```sh
+$ npm install -g verbose/verb#dev verb-generate-readme && verb
+```
+
+### Running tests
+
+Running and reviewing unit tests is a great way to get familiarized with a library and its API. You can install dependencies and run tests with the following command:
+
+```sh
+$ npm install && npm test
+```
+
+### Author
 
 **Jon Schlinkert**
 
 * [github/jonschlinkert](https://github.com/jonschlinkert)
-* [twitter/jonschlinkert](http://twitter.com/jonschlinkert)
+* [twitter/jonschlinkert](https://twitter.com/jonschlinkert)
 
-## License
+### License
 
-Copyright © 2016, [Jon Schlinkert](https://github.com/jonschlinkert).
-Released under the [MIT license](https://github.com/jonschlinkert/handlebars-delimiters/blob/master/LICENSE).
+Copyright © 2017, [Jon Schlinkert](https://github.com/jonschlinkert).
+Released under the [MIT License](LICENSE).
 
 ***
 
-_This file was generated by [verb](https://github.com/verbose/verb), v0.9.0, on May 16, 2016._
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.6.0, on July 05, 2017._

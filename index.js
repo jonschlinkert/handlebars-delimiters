@@ -13,12 +13,17 @@
 
 var cache = {};
 
-
 /**
  * Pass `Handlebars` and the `delimiters` to use as replacements. This
  * patches the `Handlebars.compile` method to automatically use the
  * custom delimiters when compiling.
  *
+ * ```js
+ * var delimiters = require('handlebars-delimiters');
+ * var handlebars = require('handlebars');
+ * delimiters(handlebars, ['<%', '%>']);
+ * // you can now use handlebars as usual, but with the new delimiters
+ * ```
  * @param {Object} `Handlebars`
  * @param {Array} `delimiters` Array with open and close delimiters, like `['<%', '%>']`
  * @return {undefined}
@@ -50,8 +55,12 @@ module.exports = function(Handlebars, delimiters) {
 };
 
 /**
- * Replace or escape delimiters in the given string.
+ * Replace or delimiters in the given string.
  *
+ * ```js
+ * var replaced = delimiters.replace(str, ['<%=', '%>']);
+ * ```
+ * @name .replace
  * @param {String} `str` String with handlebars to replace or escape.
  * @param {String} `source` The delimiters regex source string to conver to a regular expression.
  * @param {Boolean} `escape` If true, replacements are escaped with a double-slash.
@@ -73,8 +82,12 @@ function replaceDelimiters(str, source, escape) {
 }
 
 /**
- * Escape delimiters in the given string.
+ * Escape handlebars delimiters in the given string.
  *
+ * ```js
+ * var escaped = delimiters.escape(str);
+ * ```
+ * @name .escape
  * @param {String} `str` String with handlebars to replace or escape.
  * @return {String}
  * @api public
@@ -88,5 +101,5 @@ function escapeDelimiters(str) {
  * Expose `escapeDelimiters` and `replaceDelimiters`
  */
 
-module.exports.replaceDelimiters = replaceDelimiters;
-module.exports.escapeDelimiters = escapeDelimiters;
+module.exports.replace = replaceDelimiters;
+module.exports.escape = escapeDelimiters;
